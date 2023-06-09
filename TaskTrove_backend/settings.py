@@ -25,9 +25,23 @@ SECRET_KEY = 'django-insecure-@*y1%d@_kf4t!_=gy35m=wa-xvc3pulr4fc=av^%adgr@ty#z3
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'http://127.0.0.1:5173',
-    '127.0.0.1'
+    '127.0.0.1',
+    "localhost",
+    "0.0.0.0"
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5173",
+    "http://localhost:5173"
+]
+
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:5173',
+]
+
+CORS_ALLOW_HEADERS = ('content-disposition', 'accept-encoding',
+                      'content-type', 'accept', 'origin', 'Authorization',
+                      'access-control-allow-methods')
 
 # Application definition
 
@@ -38,7 +52,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'projects'
+    "rest_framework",
+    "rest_framework_simplejwt",
+    'projects',
+    'users',
+    "corsheaders",
+    # 'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
@@ -49,6 +68,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'TaskTrove_backend.urls'
@@ -110,6 +131,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

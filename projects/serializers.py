@@ -7,3 +7,9 @@ class ProjectSerializer(ModelSerializer):
     class Meta:
         model = Project
         fields = ['name', 'description', 'user']
+
+
+class ResponseSerializer(ModelSerializer):
+    class Meta:
+        model = Project
+        fields = ['description', 'user']
