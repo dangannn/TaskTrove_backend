@@ -19,12 +19,11 @@ from django.urls import path
 from rest_framework.routers import SimpleRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
-from projects.views import ProjectsView, ResponseView
+from projects.views import ProjectsView
 from users.views import UsersView
 
 router = SimpleRouter()
 router.register('api/projects', ProjectsView)
-router.register('api/responses', ResponseView)
 router.register('api/users', UsersView)
 
 urlpatterns = [
