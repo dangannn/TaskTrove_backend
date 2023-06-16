@@ -10,3 +10,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class FavoriteList(models.Model):
+    customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name='favorite_list')
+    freelancer = models.ManyToManyField(CustomUser, related_name='freelancer_favorite_list')
