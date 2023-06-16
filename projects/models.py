@@ -12,3 +12,13 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ProjectRequest(models.Model):
+    customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name='request_customer')
+    name = models.CharField(max_length=255, null=True)
+    description = models.CharField(max_length=1000, null=True)
+    freelancer = models.ManyToManyField(CustomUser, related_name='freelancer_requests')
+
+    def __str__(self):
+        return self.name

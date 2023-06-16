@@ -4,7 +4,12 @@ from projects.models import Project
 
 
 class ProjectSerializer(ModelSerializer):
+    class Meta:
+        model = Project
+        fields = ['name', 'description', 'customer', 'freelancer']
 
+
+class ProjectRequestSerializer(ModelSerializer):
     class Meta:
         model = Project
         fields = ['name', 'description', 'customer', 'freelancer']

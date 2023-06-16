@@ -19,7 +19,7 @@ from django.urls import path
 from rest_framework.routers import SimpleRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
-from projects.views import ProjectsView
+from projects.views import ProjectsView, ProjectRequestsView
 from ratings.views import CommentsView, FavoriteListsView
 from users.views import UsersView
 
@@ -28,6 +28,7 @@ router.register('api/projects', ProjectsView)
 router.register('api/users', UsersView)
 router.register('api/comments', CommentsView)
 router.register('api/favorite_lists', FavoriteListsView)
+router.register('api/requests', ProjectRequestsView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
