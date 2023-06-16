@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'projects',
     'users',
     "corsheaders",
-    # 'users.apps.UsersConfig'
+    "ratings"
 ]
 
 MIDDLEWARE = [
