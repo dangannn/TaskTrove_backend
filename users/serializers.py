@@ -7,7 +7,7 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id', "first_name", "last_name", 'username', 'password', 'email', 'groups', 'freelancer_comments',
-                  'favorite_list']
+                  'favorite_list', 'phone_number']
 
 
 class FreelancerSerializer(ModelSerializer):
