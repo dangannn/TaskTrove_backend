@@ -3,8 +3,6 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
 
-
 class CustomUser(AbstractUser):
-
     phone_number = PhoneNumberField(blank=True, region="RU")
     description = models.CharField(max_length=100, null=True)

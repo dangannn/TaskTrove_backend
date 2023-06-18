@@ -1,11 +1,25 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+
+from projects.models import Project
 from .models import CustomUser
+
+
+class ProjectsInline(admin.TabularInline):
+    model = Project
 
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = ['id', 'view_full_name', 'username', 'email', 'view_phone_number']
+    list_display_links = ['view_full_name', 'email']
+    date_hierarchy = 'date_joined'
+    filter_horizontal = ['groups']
+    list_filter = ['id', 'username']
+    readonly_fields = ["email"]
+    search_fields = ["username"]
+
+    inlines = [ProjectsInline]
 
     # Add users
     add_fieldsets = (
@@ -14,6 +28,9 @@ class CustomUserAdmin(UserAdmin):
             'Custom fields',
             {
                 'fields': (
+                    'first_name',
+                    'last_name',
+                    'email',
                     'phone_number',
                     'description',
                     'groups',
