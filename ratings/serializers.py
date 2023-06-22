@@ -6,7 +6,7 @@ from ratings.models import Comment, FavoriteList
 class CommentSerializer(ModelSerializer):
     class Meta:
         model = Comment
-        fields = ['author', 'description', 'freelancer', 'pub_date']
+        fields = ['author', 'description', 'freelancer', 'pub_date', 'is_positive']
 
 
 class FavoriteListSerializer(ModelSerializer):

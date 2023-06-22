@@ -12,11 +12,11 @@ class ProjectsInline(admin.TabularInline):
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = ['id', 'view_full_name', 'username', 'email', 'view_phone_number']
-    list_display_links = ['view_full_name', 'email']
+    list_display_links = ['id', 'view_full_name', 'email']
     date_hierarchy = 'date_joined'
     filter_horizontal = ['groups']
     list_filter = ['id', 'username']
-    readonly_fields = ["email"]
+    # readonly_fields = ["email"]
     search_fields = ["username"]
 
     inlines = [ProjectsInline]
