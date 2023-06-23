@@ -21,12 +21,13 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from projects.views import ProjectsView, ProjectRequestsView
 from ratings.views import CommentsView, FavoriteListsView
-from users.views import UsersView, FreelancersView
+from users.views import UsersView, FreelancersView, CustomersView
 
 router = SimpleRouter()
 router.register('api/projects', ProjectsView)
 router.register('api/users', UsersView)
 router.register('api/freelancers', FreelancersView)
+router.register('api/customers', CustomersView)
 router.register('api/comments', CommentsView)
 router.register('api/favorite_lists', FavoriteListsView)
 router.register('api/requests', ProjectRequestsView)

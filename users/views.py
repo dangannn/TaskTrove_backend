@@ -3,11 +3,11 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from projects.serializers import ProjectRequestSerializer
+from projects.serializers import ProjectRequestSerializer, ProjectSerializer
 from ratings.models import FavoriteList
 from ratings.serializers import CommentSerializer, FavoriteListSerializer
 from users.models import CustomUser
-from users.serializers import UserSerializer, FreelancerSerializer
+from users.serializers import UserSerializer, FreelancerSerializer, CustomerSerializer
 
 
 class UsersView(ModelViewSet):
@@ -38,7 +38,20 @@ class UsersView(ModelViewSet):
         serializer = ProjectRequestSerializer(queryset, many=True)
         return Response(serializer.data)
 
+    # @action(detail=True, methods=['get'], name='projects', url_path='projects')
+    # def projects_list(self, request, pk):
+    #     user_id: int = int(pk)  # Получение значения аргумента id из pk
+    #     queryset = self.get_queryset()
+    #     queryset = queryset[user_id].freelancer_projects.all()
+    #     serializer = ProjectSerializer(queryset, many=True)
+    #     return Response(serializer.data)
+
 
 class FreelancersView(ModelViewSet):
     queryset = CustomUser.objects.filter(groups=1)
     serializer_class = FreelancerSerializer
+
+
+class CustomersView(ModelViewSet):
+    queryset = CustomUser.objects.filter(groups=2)
+    serializer_class = CustomerSerializer

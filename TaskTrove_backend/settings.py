@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "ratings",
     "phonenumber_field",
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
