@@ -33,18 +33,10 @@ class UsersView(ModelViewSet):
     @action(detail=True, methods=['get'], name='requests_list', url_path='requests')
     def requests_list(self, request, pk):
         user_id: int = int(pk)  # Получение значения аргумента id из pk
-        queryset = self.get_queryset()
-        queryset = queryset[user_id].freelancer_requests.all()
+        queryset = self.get_queryset().filter(id=user_id)
+        queryset = queryset[0].freelancer_requests.all()
         serializer = ProjectRequestSerializer(queryset, many=True)
         return Response(serializer.data)
-
-    # @action(detail=True, methods=['get'], name='projects', url_path='projects')
-    # def projects_list(self, request, pk):
-    #     user_id: int = int(pk)  # Получение значения аргумента id из pk
-    #     queryset = self.get_queryset()
-    #     queryset = queryset[user_id].freelancer_projects.all()
-    #     serializer = ProjectSerializer(queryset, many=True)
-    #     return Response(serializer.data)
 
 
 class FreelancersView(ModelViewSet):

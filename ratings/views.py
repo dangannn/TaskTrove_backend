@@ -16,7 +16,6 @@ class CommentsView(ModelViewSet):
     # permission_classes = (IsAuthenticated,)
 
 
-
 class FavoriteListsView(ModelViewSet):
     queryset = FavoriteList.objects.all()
     serializer_class = FavoriteListSerializer

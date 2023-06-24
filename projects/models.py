@@ -16,7 +16,7 @@ class Project(models.Model):
 
 
 class ProjectRequest(models.Model):
-    customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name='request_customer')
+    customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=False, related_name='request_customer')
     name = models.CharField(max_length=255, null=True)
     description = models.CharField(max_length=1000, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)

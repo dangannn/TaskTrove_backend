@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from projects.models import Project
+from projects.models import Project, ProjectRequest
 
 
 class ProjectSerializer(ModelSerializer):
@@ -11,5 +11,5 @@ class ProjectSerializer(ModelSerializer):
 
 class ProjectRequestSerializer(ModelSerializer):
     class Meta:
-        model = Project
-        fields = ['name', 'description', 'customer', 'freelancer', 'pub_date']
+        model = ProjectRequest
+        fields = ['id', 'name', 'description', 'customer', 'freelancer', 'pub_date']
