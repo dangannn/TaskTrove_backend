@@ -21,7 +21,7 @@ class CustomUserAdmin(UserAdmin):
 
     inlines = [ProjectsInline]
 
-    # Add users
+    # Форма добавления пользователя
     add_fieldsets = (
         *UserAdmin.add_fieldsets,
         (
@@ -39,7 +39,7 @@ class CustomUserAdmin(UserAdmin):
         )
     )
 
-    # Edit user
+    # Форма изменения пользователя
     fieldsets = (
         *UserAdmin.fieldsets,
         (
