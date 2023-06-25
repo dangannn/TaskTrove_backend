@@ -11,12 +11,12 @@ class ProjectsInline(admin.TabularInline):
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
-    list_display = ['id', 'view_full_name', 'username', 'email', 'view_phone_number']
+    list_display = ['id', 'view_full_name', 'username', 'email', 'view_group']
     list_display_links = ['id', 'view_full_name', 'email']
     date_hierarchy = 'date_joined'
     filter_horizontal = ['groups']
-    list_filter = ['id', 'username']
-    # readonly_fields = ["email"]
+    list_filter = ['groups']
+    readonly_fields = ["email"]
     search_fields = ["username"]
 
     inlines = [ProjectsInline]
@@ -63,7 +63,12 @@ class CustomUserAdmin(UserAdmin):
     def view_full_name(self, obj):
         return obj.first_name + ' ' + obj.last_name
 
-    view_full_name.short_description = 'ФИО'
+    @admin.display(empty_value="-")
+    def view_group(self, obj):
+        if len([*obj.groups.values()]) > 0:
+            return [*obj.groups.values()][0]['name']
+
+    view_group.short_description = 'группа'
 
 
 admin.site.register(CustomUser, CustomUserAdmin)

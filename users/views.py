@@ -3,9 +3,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from projects.serializers import ProjectRequestSerializer, ProjectSerializer
-from ratings.models import FavoriteList
-from ratings.serializers import CommentSerializer, FavoriteListSerializer
+from projects.serializers import ProjectRequestSerializer
+from ratings.serializers import CommentSerializer
 from users.models import CustomUser
 from users.serializers import UserSerializer, FreelancerSerializer, CustomerSerializer
 

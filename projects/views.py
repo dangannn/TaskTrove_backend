@@ -19,7 +19,6 @@ class ProjectsView(ModelViewSet):
         user_id: int = int(pk)  # Получение значения аргумента id из pk
         queryset = self.get_queryset()
         queryset = queryset.filter(customer=user_id)
-        # queryset = queryset[user_id].freelancer_projects.all()
         serializer = ProjectSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -34,7 +33,6 @@ class ProjectsView(ModelViewSet):
     @action(detail=True, methods=['patch'], name='add_freelancer', url_path='add_freelancer')
     def add_freelancer(self, request, pk, *args, **kwargs):
         project_id = int(pk)
-        # Получаем объект пользователя, которого нужно обновить
         instance = self.get_queryset().filter(id=project_id)[0]
         partial = kwargs.pop('partial', False)
         request.data['freelancer'] += [_['id'] for _ in [*instance.freelancer.values()]]
@@ -44,7 +42,6 @@ class ProjectsView(ModelViewSet):
         self.perform_update(serializer)
 
         if getattr(instance, '_prefetched_objects_cache', None):
-            # Если 'prefetch_related' был применен к queryset, нужно явно сбросить кэш prefetch на объекте.
             instance._prefetched_objects_cache = {}
 
         return Response(serializer.data)
