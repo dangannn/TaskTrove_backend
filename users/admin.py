@@ -16,7 +16,7 @@ class CustomUserAdmin(UserAdmin):
     date_hierarchy = 'date_joined'
     filter_horizontal = ['groups']
     list_filter = ['groups']
-    readonly_fields = ["email"]
+    # readonly_fields = ["email"]
     search_fields = ["username"]
 
     inlines = [ProjectsInline]

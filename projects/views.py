@@ -24,7 +24,7 @@ class ProjectsView(ModelViewSet):
 
     @action(detail=True, methods=['get'], name='freelancers_list', url_path='freelancers')
     def freelancers_list(self, request, pk):
-        project_id: int = int(pk)  # Получение значения аргумента id из pk
+        project_id: int = int(pk)
         queryset = self.get_queryset().filter(id=project_id)[0]
         queryset = queryset.freelancer.all()
         serializer = FreelancerSerializer(queryset, many=True)
