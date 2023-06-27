@@ -15,10 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rest_framework.routers import SimpleRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
+from info.views import news_list, add_news, delete_news, edit_news
 from projects.views import ProjectsView, ProjectRequestsView
 from ratings.views import CommentsView, FavoriteListsView
 from users.views import UsersView, FreelancersView, CustomersView
@@ -37,6 +38,11 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/news/', news_list, name='news_list'),
+    path('api/add_news/', add_news, name='add_news'),
+    path('api/news/<int:news_id>/delete/', delete_news, name='delete_news'),
+    path('api/news/edit/<int:news_id>/', edit_news, name='edit_news'),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
 
 urlpatterns += router.urls

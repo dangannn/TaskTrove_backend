@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os
 from datetime import timedelta
 from pathlib import Path
 from decouple import config
@@ -29,6 +30,10 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     "localhost",
     "0.0.0.0"
+]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -61,6 +66,8 @@ INSTALLED_APPS = [
     "ratings",
     "phonenumber_field",
     'django_extensions',
+    'info',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -73,6 +80,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'TaskTrove_backend.urls'
@@ -80,7 +88,9 @@ ROOT_URLCONF = 'TaskTrove_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [
+            BASE_DIR / 'templates'
+        ]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
