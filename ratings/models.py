@@ -10,6 +10,10 @@ class Comment(models.Model):
     description = models.CharField(max_length=1000, null=True)
     freelancer = models.ManyToManyField(CustomUser, related_name='freelancer_comments', blank=True)
 
+    class Meta:
+        verbose_name = "Комментарий"
+        verbose_name_plural = "Комментарии"
+
     def __str__(self):
         return self.description
 
@@ -17,3 +21,7 @@ class Comment(models.Model):
 class FavoriteList(models.Model):
     customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name='favorite_list')
     freelancer = models.ManyToManyField(CustomUser, related_name='freelancer_favorite_list', blank=True)
+
+    class Meta:
+        verbose_name = "Список избранных"
+        verbose_name_plural = "Списки избранных"

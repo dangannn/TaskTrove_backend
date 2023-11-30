@@ -11,6 +11,10 @@ class Project(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     freelancer = models.ManyToManyField(CustomUser, related_name='freelancer_projects', blank=True)
 
+    class Meta:
+        verbose_name = "Проект"
+        verbose_name_plural = "Проекты"
+
     def __str__(self):
         return self.name
 
@@ -21,6 +25,10 @@ class ProjectRequest(models.Model):
     description = models.CharField(max_length=1000, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     freelancer = models.ManyToManyField(CustomUser, related_name='freelancer_requests')
+
+    class Meta:
+        verbose_name = "Запрос на проект"
+        verbose_name_plural = "Запросы на проект"
 
     def __str__(self):
         return self.name
