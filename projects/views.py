@@ -1,3 +1,4 @@
+from rest_framework import status, filters
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -11,6 +12,9 @@ from users.serializers import FreelancerSerializer
 class ProjectsView(ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['pub_date', 'payment', 'urgency']
 
     permission_classes = (IsAuthenticated,)
 

@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'info',
     "debug_toolbar",
+    'django_filters',
 ]
 
 MIDDLEWARE = [

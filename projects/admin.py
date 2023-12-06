@@ -6,7 +6,7 @@ from .models import Project, ProjectRequest
 
 class ProjectAdmin(ModelAdmin):
     model = Project
-    list_display = ['id', 'name', 'pub_date', 'customer', 'view_freelancer']
+    list_display = ['id', 'name', 'pub_date', 'urgency', 'payment', 'customer', 'view_freelancer']
     list_display_links = ['id', 'name']
     date_hierarchy = 'pub_date'
     # filter_horizontal = ['freelancer']

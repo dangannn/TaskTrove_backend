@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from rest_framework import filters
 
 from users.models import CustomUser
 
@@ -8,6 +9,8 @@ class Project(models.Model):
     customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, related_name='projects')
     name = models.CharField(max_length=255, null=True)
     description = models.CharField(max_length=1000, null=True)
+    urgency = models.DateField(max_length=1000, null=True)
+    payment = models.IntegerField(null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     freelancer = models.ManyToManyField(CustomUser, related_name='freelancer_projects', blank=True)
 
