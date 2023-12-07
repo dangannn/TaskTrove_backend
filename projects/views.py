@@ -17,7 +17,8 @@ class ProjectsView(ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
-    filter_backends = [filters.OrderingFilter]
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    search_fields = ['name', 'description']
     ordering_fields = ['pub_date', 'payment', 'urgency']
 
     permission_classes = (IsAuthenticated,)
