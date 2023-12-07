@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'info',
     "debug_toolbar",
     'django_filters',
+    'simple_history',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +83,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'TaskTrove_backend.urls'

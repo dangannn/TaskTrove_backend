@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from rest_framework import filters
+from simple_history.models import HistoricalRecords
 
 from users.models import CustomUser
 
@@ -13,6 +14,7 @@ class Project(models.Model):
     payment = models.IntegerField(null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     freelancer = models.ManyToManyField(CustomUser, related_name='freelancer_projects', blank=True)
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = "Проект"
@@ -28,6 +30,7 @@ class ProjectRequest(models.Model):
     description = models.CharField(max_length=1000, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     freelancer = models.ManyToManyField(CustomUser, related_name='freelancer_requests')
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = "Запрос на проект"
