@@ -13,6 +13,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 from decouple import config
+from import_export.formats.base_formats import XLSX
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -70,6 +71,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     'django_filters',
     'simple_history',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -118,7 +120,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+EXPORT_FORMATS = [XLSX]
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -156,8 +158,8 @@ AUTH_USER_MODEL = 'users.CustomUser'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
+STATIC_ROOT = 'D:/projects/TaskTrove-server/TaskTrove_backend/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

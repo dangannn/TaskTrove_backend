@@ -1,11 +1,29 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from .models import Project, ProjectRequest
 
 
-class ProjectAdmin(ModelAdmin):
+class ProjectResource(resources.ModelResource):
+    class Meta:
+        model = Project
+
+    def dehydrate_name(self, project):
+        return project.name.upper()
+
+    def get_export_queryset(self):
+        return self.get_queryset().filter(pub_date__year=2023)
+
+    def filter_export(self, queryset, **kwargs):
+        queryset = queryset.order_by('id')
+        return queryset
+
+
+class ProjectAdmin(ImportExportModelAdmin, ModelAdmin):
     model = Project
+    resource_class = ProjectResource
     list_display = ['id', 'name', 'pub_date', 'urgency', 'payment', 'customer', 'view_freelancer']
     list_display_links = ['id', 'name']
     date_hierarchy = 'pub_date'
