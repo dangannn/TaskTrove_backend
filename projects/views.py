@@ -50,7 +50,7 @@ class ProjectsView(ModelViewSet):
         current_date = timezone.now().date()
         start_of_next_year = current_date.replace(year=current_date.year + 1, month=1, day=1)
         queryset = queryset.filter(
-            Q(pub_date__gte=current_date - timedelta(days=7)) & ((
+            Q(pub_date__gte=current_date - timedelta(days=365)) & ((
                     Q(urgency__lte=start_of_next_year) & ~Q(payment__lte=100000) |
                     Q(urgency__gte=start_of_next_year) & Q(payment__lte=100000) & Q(payment__gte=10000))
             ))
